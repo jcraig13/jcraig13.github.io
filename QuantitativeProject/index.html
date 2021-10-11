@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Natural Plastics</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="popPyramid.js">
+    </script>
+
+    <!--css style-->
+    <style>
+        body {
+            background-color: #f4d8cd;
+        }
+
+        #pyramid {
+            width: 1500px;
+            height: 600px;
+            margin-left: auto;
+            max-width: 100%;
+        }
+
+        .newSection {
+            padding-top: 10px;
+            padding-bottom:40px;
+        }
+
+        .bodyContainer {
+            background-color: #f4d8cd;
+            margin-top: 20px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .headerSection {
+            background-color: #1e555c;
+            padding-bottom: 40px;
+            padding-top: 20px;
+            border-radius: 10px 60px 30px;
+        }
+        .headerSection h1 {
+            color: #f4d8cd;
+            text-shadow: 3px 3px 3px #3a2e39;
+        }
+        .headerSection h2 {
+            color: #f4d8cd;
+            font-size: 24px;
+            text-align: center;
+        }
+        .headerSection h3 {
+            color: #f4d8cd;
+            font-size: 20px;
+            text-align: center;
+        }
+        .mainTitle {
+            font-size: 50px;
+            font-weight: light;
+            text-align: center;
+        }
+        table{
+            margin-left: auto;
+            margin-right: auto;
+            text-align:center;
+            font-size: 15px;
+            font-weight: bold;
+        }
+        td{
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body data-spy="scroll" data-target="#navbar"></body>
+    <div class="container bodyContainer">
+      <div class="row headerSection">
+        <div class="col-md-8 col-md-offset-2">
+          <h1 class="mainTitle">Natural vs. Synthetic Plastic</h1>
+          <h2 class="">Evolution of design materials in the Cooper Hewitt Design Museum</h2>
+          <h3>A Visualization by Juliet Craig</h3>
+        </div>
+      </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div id="pyramid">
+                </div>
+                <!--images-->
+                <div id="Images">
+                    <table align:"center">
+                        <tr>
+                            <td id = "shell">
+                                <p>Tortoiseshell</p>
+                                <img src="./images/tortoiseshell.jpg" alt="Tortoiseshell Image" style="width:210px;height:200px;">
+                            </td>
+                            <td id = "leather">
+                                <p>Leather</p>
+                                <img src = "./images/leather.jpg" alt="Leather Image" style="width:180px;height:200px;">
+                            </td>
+                            <td id = "ivory">
+                                <p>Ivory</p>
+                                <img src = "./images/ivory.jpg" alt="Ivory Image" style="width:160px;height:200px;">
+                            </td>
+                            <td id = "plastic">
+                                <p>Plastic</p>
+                                <img src = "./images/plastic.jpg" alt="plastic Image" style="width:180px;height:200px;">
+                            </td>
+                            <td id = "nylon">
+                                <p>Nylon</p>
+                                <img src = "./images/nylon.jpg" alt="nylon Image" style="width:180px;height:200px;">
+                            </td>
+                            <td id = "polyester">
+                                <p>Polyester</p>
+                                <img src = "./images/polyester.jpg" alt="polyester Image" style="width:180px;height:200px;">
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <script>
+                    // data aggregated in excel must be in format: (year, natural, synthetic, tortoiseshell, leather, ivory, plastic, nylon, polyester)
+                    var materialData = [
+                        {year:  1500 , natural: 7, synthetic: 0, tortoiseshell:  0, leather: 5, ivory: 2, plastic: 0, nylon: 0, polyester: 0},
+                        {year:  1525 , natural: 3, synthetic: 0, tortoiseshell:  0, leather: 0, ivory: 3, plastic: 0, nylon: 0, polyester: 0},
+                        {year:  1550 , natural: 3, synthetic: 0, tortoiseshell:  0, leather: 1, ivory: 2, plastic: 0, nylon: 0, polyester: 0},
+                        {year:  1575 , natural: 3, synthetic: 0, tortoiseshell:  0, leather: 0, ivory: 3, plastic: 0, nylon: 0, polyester: 0},
+                        {year:  1600 , natural: 37, synthetic: 0, tortoiseshell:  2, leather: 12, ivory: 23, plastic: 0, nylon: 0, polyester: 0},
+                        {year:  1625 , natural: 5, synthetic: 0, tortoiseshell:  0, leather: 0, ivory: 5, plastic: 0, nylon: 0, polyester: 0},
+                        {year:  1650 , natural: 33, synthetic: 0, tortoiseshell:  1, leather: 10, ivory: 22, plastic: 0, nylon: 0, polyester: 0},
+                        {year:  1675 , natural: 127, synthetic: 0, tortoiseshell:  0, leather: 111, ivory: 16, plastic: 0, nylon: 0, polyester: 0},
+                        {year:  1700 , natural: 87, synthetic: 0, tortoiseshell:  5, leather: 50, ivory: 32, plastic: 0, nylon: 0, polyester: 0},
+                        {year:  1725 , natural: 38, synthetic: 0, tortoiseshell:  1, leather: 25, ivory: 12, plastic: 0, nylon: 0, polyester: 0},
+                        {year:  1750 , natural: 91, synthetic: 0, tortoiseshell:  5, leather: 27, ivory: 59, plastic: 0, nylon: 0, polyester: 0},
+                        {year:  1775 , natural: 58, synthetic: 0, tortoiseshell:  3, leather: 6, ivory: 49, plastic: 0, nylon: 0, polyester: 0},
+                        {year:  1800 , natural: 120, synthetic: 0, tortoiseshell:  13, leather: 53, ivory: 54, plastic: 0, nylon: 0, polyester: 0},
+                        {year:  1825 , natural: 24, synthetic: 0, tortoiseshell:  4, leather: 3, ivory: 17, plastic: 0, nylon: 0, polyester: 0},
+                        {year:  1850 , natural: 173, synthetic: 0, tortoiseshell:  15, leather: 89, ivory: 69, plastic: 0, nylon: 0, polyester: 0},
+                        {year:  1875 , natural: 77, synthetic: 3, tortoiseshell:  2, leather: 45, ivory: 30, plastic: 3, nylon: 0, polyester: 0},
+                        {year:  1900 , natural: 139, synthetic: 92, tortoiseshell:  0, leather: 64, ivory: 75, plastic: 92, nylon: 0, polyester: 0},
+                        {year:  1925 , natural: 12, synthetic: 205, tortoiseshell:  0, leather: 0, ivory: 12, plastic: 194, nylon: 6, polyester: 5},
+                        {year:  1950 , natural: 5, synthetic: 968, tortoiseshell:  0, leather: 0, ivory: 5, plastic: 600, nylon: 275, polyester: 93},
+                        {year:  1975 , natural: 5, synthetic: 744, tortoiseshell:  0, leather: 0, ivory: 5, plastic: 607, nylon: 38, polyester: 99},
+                        {year:  2000 , natural: 0, synthetic: 356, tortoiseshell:  0, leather: 0, ivory: 0, plastic: 78, nylon: 101, polyester: 177},
+                        {year:  2025 , natural: 0, synthetic: 7, tortoiseshell:  0, leather: 0, ivory: 0, plastic: 0, nylon: 4, polyester: 3}
+                        ]
+                    var options = {
+                        height: 600,
+                        width: 1100,
+                        style: {
+                            leftBarColor: "#3a2e39",
+                            rightBarColor: "#f15152"
+                        }
+                    }
+                    pyramidBuilder(materialData, '#pyramid', options);
+                </script>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
